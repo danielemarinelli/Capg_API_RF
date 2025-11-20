@@ -15,7 +15,10 @@ TC002_Get the user details that was created in TC001
     UserAPI.Retrieve the user by username
 
 TC003_Update the user created in TC001
-    Update the phone number and the email of the user
+    UserAPI.Update the phone number and the email of the user
 
 TC004_Get the user with the updated fields and verify them
-    Check that the phone and email after the update are as expected
+    UserAPI.Check that the phone and email after the update are as expected
+
+TC005_Delete User created in TC001
+    UserAPI.Select the correct endpoint to delete the user previously

@@ -59,3 +59,6 @@ Check that the phone and email after the update are as expected
     Should Be Equal As Strings    ${get_response_after_update.json()}[email]    ${new_email}
     Should Be Equal As Strings    ${get_response_after_update.json()}[phone]    ${new_mobile}
 
+UserAPI.Select the correct endpoint to delete the user previously
+
+
