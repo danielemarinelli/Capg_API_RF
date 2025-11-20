@@ -11,5 +11,6 @@ Resource    ../resources/UserAPI.robot
 TC001_Create a user
     UserAPI.Select the correct endpoint to send a post request
 
-
+TC002_Get the user details that was created in TC001
+    UserAPI.Retrieve the user by username
 

@@ -26,3 +26,20 @@ Select the correct endpoint to send a post request
     Should Be Equal As Strings    ${response.json()}[message]    ${userID}
     Should Be Equal As Strings    ${response.json()}[type]    unknown
 
+
+Retrieve the user by username
+    ${get_response}=    GET    ${BaseURL}${endpoint}/${name}    expected_status=200
+    Log    ${get_response.json()}
+    Dictionary Should Contain Key    ${get_response.json()}    id    username    firstName    
+    Dictionary Should Contain Key    ${get_response.json()}    lastName    email    password
+    Dictionary Should Contain Key    ${get_response.json()}    phone    userStatus
+    Should Be Equal As Strings    ${get_response.json()}[id]    ${id}
+    Should Be Equal As Strings    ${get_response.json()}[username]    ${name}
+    Should Be Equal As Strings    ${get_response.json()}[firstName]    ${fName}
+    Should Be Equal As Strings    ${get_response.json()}[lastName]    ${lName}
+    Should Be Equal As Strings    ${get_response.json()}[email]    ${email}
+    Should Be Equal As Strings    ${get_response.json()}[password]    ${pw}
+    Should Be Equal As Strings    ${get_response.json()}[phone]    ${mobile}
+    Should Be Equal As Strings    ${get_response.json()}[userStatus]    ${userStatus}
+
+
