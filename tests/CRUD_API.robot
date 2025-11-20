@@ -8,9 +8,14 @@ Resource    ../resources/UserAPI.robot
 
 *** Test Cases ***
 
-TC001_Create a user
+TC001_Create a new user
     UserAPI.Select the correct endpoint to send a post request
 
 TC002_Get the user details that was created in TC001
     UserAPI.Retrieve the user by username
 
+TC003_Update the user created in TC001
+    Update the phone number and the email of the user
+
+TC004_Get the user with the updated fields and verify them
+    Check that the phone and email after the update are as expected

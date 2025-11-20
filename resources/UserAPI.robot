@@ -43,3 +43,19 @@ Retrieve the user by username
     Should Be Equal As Strings    ${get_response.json()}[userStatus]    ${userStatus}
 
 
+Update the phone number and the email of the user
+    &{payload_updated}=    Create Dictionary    id=${id}     username=${name}    firstName=${fName}   lastName=${lName}    email=${new_email}    password=${pw}    phone=${new_mobile}     userStatus=${userStatus}
+    ${put_response}=    PUT    ${BaseURL}${endpoint}/${name}    json=${payload_updated}    expected_status=200
+    Log    ${put_response.json()}
+    Dictionary Should Contain Key    ${put_response.json()}    code    type    message
+    ${userID}=    Get From Dictionary    ${put_response.json()}    message
+    Should Be Equal As Strings    ${put_response.json()}[message]    ${userID}
+    Should Be Equal As Strings    ${put_response.json()}[type]    unknown
+    
+
+Check that the phone and email after the update are as expected
+    ${get_response_after_update}=    GET    ${BaseURL}${endpoint}/${name}    expected_status=200
+    Log    ${get_response_after_update.json()}
+    Should Be Equal As Strings    ${get_response_after_update.json()}[email]    ${new_email}
+    Should Be Equal As Strings    ${get_response_after_update.json()}[phone]    ${new_mobile}
+
