@@ -83,3 +83,6 @@ Send a post request with wrong payload
     &{payload_body}=    Create Dictionary    job=QA    id=${id}     username=${name}    firstName=${fName}   lastName=${lName}    email=${email}    password=${pw}    phone=${mobile}     userStatus=${userStatus}
     ${response}=    POST    ${BaseURL}${endpoint}     expected_status=415
 
+
+Send a get request without username endpoint
+    GET    ${BaseURL}${endpoint}     expected_status=405
