@@ -74,8 +74,12 @@ Send the get request to verify the user does not exist
     Should Be Equal As Strings    ${get_response_after_delete.json()}[message]    User not found
 
 
-Send a GET request with payload
+Send a get request with payload
     &{payload_body}=    Create Dictionary    id=${id}     username=${name}    firstName=${fName}   lastName=${lName}    email=${email}    password=${pw}    phone=${mobile}     userStatus=${userStatus}
     ${response}=    GET    ${BaseURL}${endpoint}/${name}     expected_status=404
-    Log    ${response.json()}
+
+
+Send a post request with wrong payload
+    &{payload_body}=    Create Dictionary    job=QA    id=${id}     username=${name}    firstName=${fName}   lastName=${lName}    email=${email}    password=${pw}    phone=${mobile}     userStatus=${userStatus}
+    ${response}=    POST    ${BaseURL}${endpoint}     expected_status=415
 
