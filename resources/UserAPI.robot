@@ -65,7 +65,12 @@ UserAPI.Select the correct endpoint to delete the user previously
     Log    ${delete_resp.json()}
     Dictionary Should Contain Key    ${delete_resp.json()}    code    type    message
     Should Be Equal As Strings    ${delete_resp.json()}[message]    ${name}
+
+Send the get request to verify the user does not exist
     ${get_response_after_delete}=    GET    ${BaseURL}${endpoint}/${name}    expected_status=404
-    Log    ${get_response_after_delete}
+    Dictionary Should Contain Key    ${get_response_after_delete.json()}    code    type    message
+    Should Be Equal As Strings    ${get_response_after_delete.json()}[code]    1
+    Should Be Equal As Strings    ${get_response_after_delete.json()}[type]    error
+    Should Be Equal As Strings    ${get_response_after_delete.json()}[message]    User not found
 
 

@@ -22,3 +22,7 @@ TC004_Get the user with the updated fields and verify them
 
 TC005_Delete User created in TC001
     UserAPI.Select the correct endpoint to delete the user previously
+
+TC006_Verify the User is deleted successfully
+    UserAPI.Send the get request to verify the user does not exist
+
