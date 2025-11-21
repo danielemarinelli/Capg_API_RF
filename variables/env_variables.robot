@@ -5,8 +5,8 @@ Documentation    File with all the variables and routes
 *** Variables ***
 ${BaseURL}    https://petstore.swagger.io/v2
 ${endpoint}    /user
-${id}        47
-${name}      sharks
+${id}        48
+${name}      sharkszz
 ${fName}     Josh
 ${lName}     Allen
 ${email}     ja@gmail.it
