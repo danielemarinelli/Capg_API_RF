@@ -60,5 +60,11 @@ Check that the phone and email after the update are as expected
     Should Be Equal As Strings    ${get_response_after_update.json()}[phone]    ${new_mobile}
 
 UserAPI.Select the correct endpoint to delete the user previously
+    &{delete_user}=    Create Dictionary    username=${name}
+    ${delete_resp}=    DELETE    ${BaseURL}${endpoint}/${name}    json=${delete_user}    expected_status=200
+    Log    ${delete_resp.json()}
+    Dictionary Should Contain Key    ${delete_resp.json()}    code    type    message
+    #${del_message}=    Get From Dictionary    ${delete_resp.json()}    message
+    Should Be Equal As Strings    ${delete_resp.json()}[message]    ${name}
 
 
