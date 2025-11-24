@@ -9,7 +9,7 @@ Resource    ../resources/UserAPI.robot
 *** Test Cases ***
 
 TC001_Create a new user
-    UserAPI.Select the correct endpoint to send a post request
+    UserAPI.Select the correct endpoint to send a post request    52    kings    Josh    Allen    gb@gmail.it    king123    716632    99
 
 TC002_Get the user details that was created in TC001
     UserAPI.Retrieve the user by username
