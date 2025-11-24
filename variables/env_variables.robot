@@ -13,8 +13,8 @@ ${email}     gb@gmail.it
 ${pw}        king123
 ${mobile}    716632
 ${userStatus}    99
-${new_email}    bflo@gmail.it
-${new_mobile}    3897879
+#${new_email}    bflo@gmail.it
+#${new_mobile}    3897879
 
 
 
