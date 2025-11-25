@@ -10,8 +10,11 @@ Three folders are present:
 Install Python and Robot Framework. The library needed are RequestsLibrary and Collections. 
 
 To run navigate to project folder /tests and run the following command:
+
 robot . 
+
 At runtime username can be declaired and tests can be executed with TAGS, by running the following command:
+
 robot --variable username:superman --include SMOKE .
 
 
