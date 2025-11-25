@@ -22,28 +22,42 @@ Select the correct endpoint to send a post request
     &{payload_body}=    Create Dictionary    id=${id}     username=${name}    firstName=${fName}   lastName=${lName}    email=${email}    password=${pw}    phone=${mobile}     userStatus=${userStatus}
     ${response}=    POST    ${BaseURL}${endpoint}    json=${payload_body}    expected_status=200
     Log    ${response.json()}
-    Dictionary Should Contain Key    ${response.json()}    code    type    message
+    #Dictionary Should Contain Key    ${response.json()}    code    type    message
+    ${StatusCode}=    Get From Dictionary    ${response.json()}    code
+    ${StatusCode_as_integer}=    Convert To Integer    ${StatusCode}
     ${userID}=    Get From Dictionary    ${response.json()}    message
-    Should Be Equal As Strings    ${response.json()}[message]    ${userID}
-    Should Be Equal As Strings    ${response.json()}[type]    unknown
+    #Should Be Equal As Strings    ${response.json()}[message]    ${userID}
+    #Should Be Equal As Strings    ${response.json()}[type]    unknown
+    Dictionary Should Contain Item    ${response.json()}     code    ${StatusCode_as_integer}
+    Dictionary Should Contain Item    ${response.json()}     message    ${userID}
+    Dictionary Should Contain Item    ${response.json()}     type    unknown
 
 
 Retrieve the user by username
     ${get_response}=    GET    ${BaseURL}${endpoint}/${name}    expected_status=200
     Log    ${get_response.json()}
     ${id_as_integer}=    Convert To Integer    ${id}
-    Dictionary Should Contain Key    ${get_response.json()}    id    username    firstName    
-    Dictionary Should Contain Key    ${get_response.json()}    lastName    email    password
-    Dictionary Should Contain Key    ${get_response.json()}    phone    userStatus
-    Should Be Equal As Strings    ${get_response.json()}[id]    ${id}
-    Should Be Equal As Strings    ${get_response.json()}[username]    ${name}
-    Should Be Equal As Strings    ${get_response.json()}[firstName]    ${fName}
-    Should Be Equal As Strings    ${get_response.json()}[lastName]    ${lName}
-    Should Be Equal As Strings    ${get_response.json()}[email]    ${email}
-    Should Be Equal As Strings    ${get_response.json()}[password]    ${pw}
-    Should Be Equal As Strings    ${get_response.json()}[phone]    ${mobile}
-    Should Be Equal As Strings    ${get_response.json()}[userStatus]    ${userStatus}
+    ${userStatus_as_integer}=    Convert To Integer    ${userStatus}
+    #Dictionary Should Contain Key    ${get_response.json()}    id    username    firstName
+    #Dictionary Should Contain Key    ${get_response.json()}    lastName    email    password
+    #Dictionary Should Contain Key    ${get_response.json()}    phone    userStatus
+    #Should Be Equal As Strings    ${get_response.json()}[id]    ${id}
+    #Should Be Equal As Strings    ${get_response.json()}[username]    ${name}
+    #Should Be Equal As Strings    ${get_response.json()}[firstName]    ${fName}
+    #Should Be Equal As Strings    ${get_response.json()}[lastName]    ${lName}
+    #Should Be Equal As Strings    ${get_response.json()}[email]    ${email}
+    #Should Be Equal As Strings    ${get_response.json()}[password]    ${pw}
+    #Should Be Equal As Strings    ${get_response.json()}[phone]    ${mobile}
+    #Should Be Equal As Strings    ${get_response.json()}[userStatus]    ${userStatus}
     Dictionary Should Contain Item    ${get_response.json()}     id    ${id_as_integer}
+    Dictionary Should Contain Item    ${get_response.json()}     username    ${name}
+    Dictionary Should Contain Item    ${get_response.json()}     firstName    ${fName}
+    Dictionary Should Contain Item    ${get_response.json()}     lastName    ${lName}
+    Dictionary Should Contain Item    ${get_response.json()}     email    ${email}
+    Dictionary Should Contain Item    ${get_response.json()}     password    ${pw}
+    Dictionary Should Contain Item    ${get_response.json()}     phone    ${mobile}
+    Dictionary Should Contain Item    ${get_response.json()}     userStatus    ${userStatus_as_integer}
+    
 
 
 Update the phone number and the email of the user
