@@ -9,9 +9,11 @@ Resource    ../resources/UserAPI.robot
 *** Test Cases ***
 
 TC001_Create a new user
+    [Tags]    SMOKE
     UserAPI.Select the correct endpoint to send a post request    52    kings    Josh    Allen    gb@gmail.it    king123    716632    99
 
 TC002_Get the user details that was created in TC001
+    [Tags]    SMOKE
     UserAPI.Retrieve the user by username
 
 TC003_Update the user created in TC001

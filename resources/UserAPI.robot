@@ -7,6 +7,7 @@ Resource    ../variables/env_variables.robot
 
 *** Keywords ***
 Select the correct endpoint to send a post request
+    [Arguments]    ${id}    ${name}    ${fName}    ${lName}     ${email}    ${pw}    ${mobile}    ${userStatus}
     #payload
 #{
 #  "id": 0,
@@ -30,6 +31,7 @@ Select the correct endpoint to send a post request
 Retrieve the user by username
     ${get_response}=    GET    ${BaseURL}${endpoint}/${name}    expected_status=200
     Log    ${get_response.json()}
+    ${id_as_integer}=    Convert To Integer    ${id}
     Dictionary Should Contain Key    ${get_response.json()}    id    username    firstName    
     Dictionary Should Contain Key    ${get_response.json()}    lastName    email    password
     Dictionary Should Contain Key    ${get_response.json()}    phone    userStatus
@@ -41,6 +43,7 @@ Retrieve the user by username
     Should Be Equal As Strings    ${get_response.json()}[password]    ${pw}
     Should Be Equal As Strings    ${get_response.json()}[phone]    ${mobile}
     Should Be Equal As Strings    ${get_response.json()}[userStatus]    ${userStatus}
+    Dictionary Should Contain Item    ${get_response.json()}     id    ${id_as_integer}
 
 
 Update the phone number and the email of the user
