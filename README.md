@@ -13,7 +13,7 @@ To run navigate to project folder /tests and run the following command:
 
 robot . 
 
-At runtime username can be declaired and tests can be executed with TAGS (SMOKE, REGRESSIONE, NEGATIVE_TESTS), by running the following command:
+At runtime username can be declaired and tests can be executed with TAGS (SMOKE, REGRESSION, NEGATIVE_TESTS), by running the following command:
 
 robot --variable username:superman --include SMOKE .
 
