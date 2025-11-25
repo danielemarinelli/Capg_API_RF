@@ -51,7 +51,6 @@ Update the phone number and the email of the user
     Dictionary Should Contain Key    ${put_response.json()}    code    type    message
     ${userID}=    Get From Dictionary    ${put_response.json()}    message
     Should Be Equal As Strings    ${put_response.json()}[message]    ${userID}
-    #Should Be Equal As Strings    ${put_response.json()}[type]    unknown
     Dictionary Should Contain Item    ${put_response.json()}     type    unknown
 
 
